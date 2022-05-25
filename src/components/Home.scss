@@ -1,0 +1,18 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 250px;
+  height: 250px;
+  list-style: none;
+}
+img {
+  width: 90px;
+  height: 90px;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import getPokemons from '../services/api';
+import './Home.scss';
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -33,7 +34,7 @@ const Home = () => {
 
   return (
     <>
-      <ul>{renderList(pokemons)}</ul>
+      <ul className="list">{renderList(pokemons)}</ul>
     </>
   );
 };
