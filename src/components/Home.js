@@ -12,8 +12,8 @@ const Home = () => {
   const renderList = (pokemons) => {
     return pokemons.map((pokemon) => {
       return (
-        <Link to={`/pokemon/${pokemon.id}`}>
-          <li className="card" key={pokemon.id}>
+        <Link to={`/pokemon/${pokemon.id}`} key={pokemon.id}>
+          <li className="card">
             <img src={pokemon.image} alt={pokemon.name} />
             <h2>{pokemon.name}</h2>
             <ul>
