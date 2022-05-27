@@ -5,13 +5,15 @@ import './Home.scss';
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [pokemonsCount, setPokemonsCount] = useState();
   const [offset, setOffset] = useState(0);
   const limit = 10;
 
   useEffect(() => {
     getPokemons({ limit: String(limit), offset: String(offset) }).then(
       (response) => {
-        setPokemons([...pokemons, ...response]);
+        setPokemonsCount(response.count);
+        setPokemons([...pokemons, ...response.items]);
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,7 +47,7 @@ const Home = () => {
         ))}
       </ul>
       {/* si esto se cumple, se ejecuta lo que le indicamos  */}
-      {pokemons.length <= 150 && (
+      {pokemons.length + 1 <= pokemonsCount && (
         <button onClick={fetchMorePokemons}>cargar más</button>
       )}
     </>

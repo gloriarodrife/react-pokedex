@@ -12,7 +12,7 @@ const getPokemons = async ({ limit, offset }) => {
   const response = await fetch(url.href);
   const data = await response.json();
 
-  return data.items;
+  return data;
 };
 
 export default getPokemons;
