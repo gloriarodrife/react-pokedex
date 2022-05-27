@@ -5,10 +5,21 @@ import './Home.scss';
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const limit = 10;
 
   useEffect(() => {
-    getPokemons().then((response) => setPokemons(response));
-  }, []);
+    getPokemons({ limit: String(limit), offset: String(offset) }).then(
+      (response) => {
+        setPokemons([...pokemons, ...response]);
+      }
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset]);
+
+  const fetchMorePokemons = () => {
+    setOffset(offset + limit);
+  };
 
   const renderCard = (pokemon) => {
     return (
@@ -33,6 +44,10 @@ const Home = () => {
           </li>
         ))}
       </ul>
+      {/* si esto se cumple, se ejecuta lo que le indicamos  */}
+      {pokemons.length <= 150 && (
+        <button onClick={fetchMorePokemons}>cargar más</button>
+      )}
     </>
   );
 };
