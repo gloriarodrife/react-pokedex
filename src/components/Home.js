@@ -3,6 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link } from 'react-router-dom';
 import getPokemons from '../services/api';
 import './Home.scss';
+import Loading from './Loading';
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -46,7 +47,11 @@ const Home = () => {
           dataLength={pokemons.length}
           next={fetchMorePokemons}
           hasMore={pokemons.length <= pokemonsCount - 1}
-          loader={<div className="loader">Loading...</div>}
+          loader={
+            <div className="loader">
+              <Loading />
+            </div>
+          }
         >
           {pokemons.map((pokemon) => (
             <div role="listitem" key={pokemon.id}>
