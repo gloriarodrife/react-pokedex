@@ -1,15 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './components/Home';
+import { ReactComponent as PokedexLogo } from './pokedex-logo.svg';
 
 function App() {
   return (
     <div>
       <header>
-        <h1>Pokédex</h1>
+        <PokedexLogo />
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<p>Home</p>} />
+          <Route path="/" element={<Home />} />
           <Route path="/pokemon/:id" element={<p>Detail</p>} />
         </Routes>
       </main>
