@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link } from 'react-router-dom';
 import getPokemons from '../services/api';
 import './Home.scss';
@@ -7,7 +8,7 @@ const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonsCount, setPokemonsCount] = useState();
   const [offset, setOffset] = useState(0);
-  const limit = 10;
+  const limit = 20;
 
   useEffect(() => {
     getPokemons({ limit: String(limit), offset: String(offset) }).then(
@@ -38,19 +39,26 @@ const Home = () => {
   };
 
   return (
-    <>
-      <ul className="list">
-        {pokemons.map((pokemon) => (
-          <li key={pokemon.id}>
-            <Link to={`/pokemon/${pokemon.id}`}>{renderCard(pokemon)}</Link>
-          </li>
-        ))}
-      </ul>
-      {/* si esto se cumple, se ejecuta lo que le indicamos  */}
-      {pokemons.length + 1 <= pokemonsCount && (
-        <button onClick={fetchMorePokemons}>cargar más</button>
-      )}
-    </>
+    <div className="container">
+      <InfiniteScroll
+        dataLength={pokemons.length}
+        next={fetchMorePokemons}
+        hasMore={pokemons.length <= pokemonsCount - 1}
+        loader={
+          <div className="loader">
+            <button onClick={fetchMorePokemons}>Load more</button>
+          </div>
+        }
+      >
+        <ul className="list">
+          {pokemons.map((pokemon) => (
+            <li key={pokemon.id}>
+              <Link to={`/pokemon/${pokemon.id}`}>{renderCard(pokemon)}</Link>
+            </li>
+          ))}
+        </ul>
+      </InfiniteScroll>
+    </div>
   );
 };
 
