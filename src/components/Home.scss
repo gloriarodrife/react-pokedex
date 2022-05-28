@@ -1,5 +1,6 @@
 .container {
-  margin: 1rem;
+  margin: 1rem auto 2rem auto;
+  max-width: 1000px;
 }
 
 .list {
@@ -64,6 +65,6 @@
 }
 
 .loader {
-  text-align: center;
+  grid-column: 1 / -1;
   margin-top: 1.5rem;
 }

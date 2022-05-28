@@ -40,24 +40,21 @@ const Home = () => {
 
   return (
     <div className="container">
-      <InfiniteScroll
-        dataLength={pokemons.length}
-        next={fetchMorePokemons}
-        hasMore={pokemons.length <= pokemonsCount - 1}
-        loader={
-          <div className="loader">
-            <button onClick={fetchMorePokemons}>Load more</button>
-          </div>
-        }
-      >
-        <ul className="list">
+      <div role="list">
+        <InfiniteScroll
+          className="list"
+          dataLength={pokemons.length}
+          next={fetchMorePokemons}
+          hasMore={pokemons.length <= pokemonsCount - 1}
+          loader={<div className="loader">Loading...</div>}
+        >
           {pokemons.map((pokemon) => (
-            <li key={pokemon.id}>
+            <div role="listitem" key={pokemon.id}>
               <Link to={`/pokemon/${pokemon.id}`}>{renderCard(pokemon)}</Link>
-            </li>
+            </div>
           ))}
-        </ul>
-      </InfiniteScroll>
+        </InfiniteScroll>
+      </div>
     </div>
   );
 };
