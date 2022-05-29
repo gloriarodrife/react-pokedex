@@ -1,5 +1,6 @@
 .detail-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: 1rem;
 }
@@ -74,4 +75,18 @@
 
 .loading {
   text-align: center;
+}
+.evolutions {
+  display: flex;
+  flex-direction: column;
+
+  &__detail {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }

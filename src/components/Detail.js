@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { getPokemonById } from '../services/api';
 import './Detail.scss';
 import Loading from './Loading';
+import PokemonCard from './PokemonCard';
 function Detail() {
   const { id } = useParams();
   const [pokemon, setPokemon] = useState();
@@ -12,15 +14,37 @@ function Detail() {
       console.log(response);
     });
   }, [id]);
+
   if (!pokemon) {
     return (
       <div className="detail-container">
         <div className="loading">
-          <Loading />;
+          <Loading />
         </div>
       </div>
     );
   }
+  const renderEvolutions = () => {
+    if (pokemon.evolutions.length === 0) {
+      return;
+    }
+
+    return (
+      <section className="evolutions">
+        <h2>Evolutions</h2>
+        <div className="evolutions__detail">
+          {pokemon.evolutions.map((pokemon) => {
+            return (
+              <Link to={`/pokemon/${pokemon.id}`} key={pokemon.id}>
+                <PokemonCard pokemon={pokemon} />
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+    );
+  };
+
   return (
     <div className="detail-container">
       <div className="pokemon">
@@ -50,6 +74,7 @@ function Detail() {
           </section>
         </section>
       </div>
+      {renderEvolutions()}
     </div>
   );
 }
