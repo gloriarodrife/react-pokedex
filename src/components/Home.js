@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link } from 'react-router-dom';
-import getPokemons from '../services/api';
+import { getPokemons } from '../services/api';
 import './Home.scss';
 import Loading from './Loading';
 

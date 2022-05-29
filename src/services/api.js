@@ -1,7 +1,7 @@
-const URL_API = `https://q-exercise-api.o64ixruq9hj.us-south.codeengine.appdomain.cloud`;
+const URL_API = `https://q-exercise-api.o64ixruq9hj.us-south.codeengine.appdomain.cloud/api/rest`;
 
-const getPokemons = async ({ limit, offset }) => {
-  const url = new URL(`${URL_API}/api/rest/pokemon`);
+export const getPokemons = async ({ limit, offset }) => {
+  const url = new URL(`${URL_API}/pokemon`);
   if (limit) {
     url.searchParams.append('limit', limit);
   }
@@ -15,4 +15,9 @@ const getPokemons = async ({ limit, offset }) => {
   return data;
 };
 
-export default getPokemons;
+export const getPokemonById = async (id) => {
+  const response = await fetch(`${URL_API}/pokemon/${id}`);
+  const data = await response.json();
+
+  return data;
+};
