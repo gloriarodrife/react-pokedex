@@ -6,9 +6,11 @@ import { getPokemonById } from '../services/api';
 import './Detail.scss';
 import Loading from './Loading';
 import PokemonCard from './PokemonCard';
+
 function Detail() {
   const { id } = useParams();
   const [pokemon, setPokemon] = useState();
+
   useEffect(() => {
     getPokemonById(id).then((response) => {
       setPokemon(response);
@@ -24,6 +26,7 @@ function Detail() {
       </div>
     );
   }
+
   const renderEvolutions = () => {
     if (pokemon.evolutions.length === 0) {
       return;
@@ -33,9 +36,11 @@ function Detail() {
       <section className="evolutions">
         <h2>Evolutions</h2>
         <div className="evolutions__detail">
-          {pokemon.evolutions.map((pokemon) => {
+          {pokemon.evolutions.map((evolution) => {
+            const pokemon = { name: evolution.name, image: evolution.image };
+
             return (
-              <Link to={`/pokemon/${pokemon.id}`} key={pokemon.id}>
+              <Link to={`/pokemon/${evolution.id}`} key={evolution.id}>
                 <PokemonCard pokemon={pokemon} />
               </Link>
             );
@@ -44,7 +49,7 @@ function Detail() {
       </section>
     );
   };
-  let audio = new Audio(pokemon.sound);
+
   return (
     <div className="detail-container">
       <div className="pokemon">
@@ -56,6 +61,7 @@ function Detail() {
         <div className="pokemon__sound">
           <SoundIcon
             onClick={() => {
+              let audio = new Audio(pokemon.sound);
               audio.play();
             }}
           />

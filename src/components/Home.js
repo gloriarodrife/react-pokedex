@@ -26,8 +26,18 @@ const Home = () => {
     setOffset(offset + limit);
   };
 
+  if (!pokemons.length) {
+    return (
+      <div className="home-container">
+        <div className="loading">
+          <Loading />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="container">
+    <div className="home-container">
       <div role="list">
         <InfiniteScroll
           className="list"

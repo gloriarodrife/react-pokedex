@@ -10,7 +10,9 @@ function PokemonCard(props) {
       </div>
       <div className="card__footer">
         <h2 className="card__title">{pokemon.name}</h2>
-        <span className="card__types">{pokemon.types.join(', ')}</span>
+        {pokemon.types && (
+          <span className="card__types">{pokemon.types.join(', ')}</span>
+        )}
       </div>
     </div>
   );
