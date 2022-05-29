@@ -24,6 +24,7 @@ function Detail() {
       </div>
     );
   }
+
   const renderEvolutions = () => {
     if (pokemon.evolutions.length === 0) {
       return;
