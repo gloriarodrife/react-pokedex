@@ -2,7 +2,7 @@
   "name": "react-pokedex",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gloriarodrife.github.io/react-pokedex/",
+  "homepage": "/",
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
