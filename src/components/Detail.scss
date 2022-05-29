@@ -28,11 +28,11 @@
   }
 
   &__sound {
-    cursor: pointer;
     width: 100%;
     padding: 0 0 1rem 1rem;
 
     > svg {
+      cursor: pointer;
       width: 25px;
       height: 25px;
       fill: #70c1a1;
