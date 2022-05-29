@@ -45,7 +45,7 @@ function Detail() {
       </section>
     );
   };
-  let audio = new Audio(pokemon.sound);
+
   return (
     <div className="detail-container">
       <div className="pokemon">
@@ -57,6 +57,7 @@ function Detail() {
         <div className="pokemon__sound">
           <SoundIcon
             onClick={() => {
+              let audio = new Audio(pokemon.sound);
               audio.play();
             }}
           />
