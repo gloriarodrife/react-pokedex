@@ -5,6 +5,6 @@ header {
   padding: 1rem;
 }
 
-header > svg {
+header > a > svg {
   height: 100px;
 }
