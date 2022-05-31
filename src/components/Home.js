@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link } from 'react-router-dom';
-import { getPokemons } from '../services/api';
+import { getPokemons, getPokemonsTypes } from '../services/api';
 import Filters from './Filters';
 import './Home.scss';
 import Loading from './Loading';
@@ -19,7 +19,9 @@ const sort = (list, key) => {
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [types, setTypes] = useState([]);
   const [filterName, setFilterName] = useState('');
+  const [filterType, setFilterType] = useState('');
   const [pokemonsCount, setPokemonsCount] = useState();
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
@@ -31,20 +33,26 @@ const Home = () => {
       limit: String(limit),
       offset: String(offset),
       search: filterName.toLowerCase(),
+      type: filterType,
     }).then((response) => {
       setPokemonsCount(response.count);
-      const newPokemons = filterName
-        ? response.items
-        : sort(duplicates([...pokemons, ...response.items]), 'id');
+      const newPokemons =
+        filterName || filterType
+          ? response.items
+          : sort(duplicates([...pokemons, ...response.items]), 'id');
       setPokemons(newPokemons);
       setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, filterName]);
+  }, [offset, filterName, filterType]);
 
   const fetchMorePokemons = () => {
     setOffset(offset + limit);
   };
+
+  useEffect(() => {
+    getPokemonsTypes().then((response) => setTypes(response.sort()));
+  }, []);
 
   const renderContent = () => {
     if (loading && !pokemons.length) {
@@ -85,7 +93,12 @@ const Home = () => {
   };
   return (
     <div className="home-container">
-      <Filters setFilterName={setFilterName} filterName={filterName} />
+      <Filters
+        setFilterName={setFilterName}
+        filterName={filterName}
+        setFilterType={setFilterType}
+        types={types}
+      />
       {renderContent()}
     </div>
   );
