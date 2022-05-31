@@ -22,7 +22,7 @@ function Filters(props) {
           name="types"
           id="types"
           onChange={hanldeType}
-          className="filter__select row"
+          className="filter__select"
         >
           <option value="">Type</option>
           {props.types.map((type, index) => (
