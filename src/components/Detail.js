@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import { ReactComponent as Heart } from '../images/heart.svg';
 import { ReactComponent as SoundIcon } from '../images/sound-full.svg';
 import { getPokemonById } from '../services/api';
 import './Detail.scss';
@@ -68,8 +69,11 @@ function Detail() {
         </div>
         <section className="pokemon__detail">
           <section className="pokemon__description">
-            <h1 className="pokemon__name">{pokemon.name}</h1>
-            <span className="pokemon__types">{pokemon.types.join(', ')}</span>
+            <div>
+              <h1 className="pokemon__name">{pokemon.name}</h1>
+              <span className="pokemon__types">{pokemon.types.join(', ')}</span>
+            </div>
+            <Heart className="heart" />
           </section>
           <section className="pokemon__stats">
             <div className="pokemon__stat">
