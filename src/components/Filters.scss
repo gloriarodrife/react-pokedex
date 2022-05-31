@@ -3,9 +3,11 @@
   flex-direction: row;
   justify-content: center;
   padding: 1rem;
+  gap: 1rem;
 }
 .filter {
-  &__search {
+  &__search,
+  &__select {
     padding: 0 0.5rem;
     border: 1px solid rgba(31, 31, 31, 0.3);
     background-color: #f3f3f3;
@@ -15,4 +17,8 @@
     border-radius: 4px;
     cursor: pointer;
   }
+}
+
+.row {
+  color: #757575;
 }
