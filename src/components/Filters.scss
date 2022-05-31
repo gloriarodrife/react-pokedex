@@ -16,9 +16,21 @@
     height: 30px;
     border-radius: 4px;
     cursor: pointer;
+    color: #757575;
+    appearance: none;
   }
 }
 
-.row {
-  color: #757575;
+.select::after {
+  content: '';
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-left-color: #71c1a1;
+  display: inline-block;
+  position: relative;
+  right: 20px;
+  top: 2px;
+  transform: rotate(90deg);
+  cursor: pointer;
 }
