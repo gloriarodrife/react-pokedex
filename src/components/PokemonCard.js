@@ -4,7 +4,6 @@ import { ReactComponent as Heart } from '../images/heart.svg';
 import './PokemonCard.scss';
 function PokemonCard(props) {
   const { pokemon } = props;
-
   const handleClick = (event) => {
     event.preventDefault();
     const id = pokemon.id;

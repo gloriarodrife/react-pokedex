@@ -8,9 +8,7 @@ function Filters(props) {
   };
   return (
     <>
-      <div>
-        <button>Favorites</button>
-      </div>
+      <div>{/* Favorite  */}</div>
       <div className="filters">
         <input
           className="filter__search"

@@ -57,7 +57,6 @@ const Home = () => {
 
   const favorite = (id) => {
     postPokemonFavorite(id).then((response) => {
-      console.log(response);
       const newPokemons = sort(duplicates([...pokemons, response]), 'id');
       setPokemons(newPokemons);
     });
@@ -65,7 +64,6 @@ const Home = () => {
 
   const unFavorite = (id) => {
     postPokemonUnFavorite(id).then((response) => {
-      console.log(response);
       const newPokemons = sort(duplicates([...pokemons, response]), 'id');
       setPokemons(newPokemons);
     });
