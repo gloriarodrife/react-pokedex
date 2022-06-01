@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link } from 'react-router-dom';
-import { getPokemons, getPokemonsTypes } from '../services/api';
+import {
+  getPokemons,
+  getPokemonsTypes,
+  postPokemonFavorite,
+  postPokemonUnFavorite,
+} from '../services/api';
 import Filters from './Filters';
 import './Home.scss';
 import Loading from './Loading';
@@ -46,14 +51,26 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset, filterName, filterType]);
 
-  const fetchMorePokemons = () => {
-    setOffset(offset + limit);
-  };
-
   useEffect(() => {
     getPokemonsTypes().then((response) => setTypes(response.sort()));
   }, []);
 
+  const favorite = (id) => {
+    postPokemonFavorite(id).then((response) => {
+      const newPokemons = sort(duplicates([...pokemons, response]), 'id');
+      setPokemons(newPokemons);
+    });
+  };
+
+  const unFavorite = (id) => {
+    postPokemonUnFavorite(id).then((response) => {
+      const newPokemons = sort(duplicates([...pokemons, response]), 'id');
+      setPokemons(newPokemons);
+    });
+  };
+  const fetchMorePokemons = () => {
+    setOffset(offset + limit);
+  };
   const renderContent = () => {
     if (loading && !pokemons.length) {
       return (
@@ -83,7 +100,11 @@ const Home = () => {
           {pokemons.map((pokemon) => (
             <div role="listitem" key={pokemon.id}>
               <Link to={`/pokemon/${pokemon.id}`}>
-                <PokemonCard pokemon={pokemon} />
+                <PokemonCard
+                  pokemon={pokemon}
+                  postPokemonFavorite={favorite}
+                  postPokemonUnFavorite={unFavorite}
+                />
               </Link>
             </div>
           ))}
