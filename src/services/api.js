@@ -33,3 +33,30 @@ export const getPokemonsTypes = async () => {
 
   return data;
 };
+
+export const postPokemonFavorite = async (id) => {
+  const config = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  };
+  const response = await fetch(`${URL_API}/pokemon/${id}/favorite`, config);
+  const data = await response.json();
+
+  return data;
+};
+export const postPokemonUnFavorite = async (id) => {
+  const config = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  };
+  const response = await fetch(`${URL_API}/pokemon/${id}/unfavorite`, config);
+  const data = await response.json();
+
+  return data;
+};
