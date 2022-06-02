@@ -1,11 +1,13 @@
 import './Filters.scss';
+
 function Filters(props) {
-  const handleInput = (event) => {
-    props.setFilterName(event.currentTarget.value);
+  const searchHasChanged = (event) => {
+    props.onSearchChange(event.currentTarget.value);
   };
-  const hanldeType = (event) => {
-    props.setFilterType(event.currentTarget.value);
+  const typeHasChanged = (event) => {
+    props.onTypeChange(event.currentTarget.value);
   };
+
   return (
     <>
       <div>{/* Favorite  */}</div>
@@ -16,14 +18,14 @@ function Filters(props) {
           type="search"
           id="name"
           name="name"
-          value={props.filterName}
-          onChange={handleInput}
+          value={props.searchValue}
+          onChange={searchHasChanged}
         />
         <div className="select">
           <select
             name="types"
             id="types"
-            onChange={hanldeType}
+            onChange={typeHasChanged}
             className="filter__select"
           >
             <option value="">Type</option>
