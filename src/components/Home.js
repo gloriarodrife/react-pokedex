@@ -40,11 +40,11 @@ const Home = () => {
       search: filterName.toLowerCase(),
       type: filterType,
     }).then((response) => {
+      const newPokemons = offset
+        ? sort(duplicates([...pokemons, ...response.items]), 'id')
+        : response.items;
+
       setPokemonsCount(response.count);
-      const newPokemons =
-        filterName || filterType
-          ? response.items
-          : sort(duplicates([...pokemons, ...response.items]), 'id');
       setPokemons(newPokemons);
       setLoading(false);
     });
@@ -69,7 +69,19 @@ const Home = () => {
     });
   };
   const fetchMorePokemons = () => {
-    setOffset(offset + limit);
+    // If there are more pokemons in this search, fetch them
+    if (pokemons.length < pokemonsCount) {
+      setOffset(offset + limit);
+    }
+  };
+
+  const onChangeFilterType = (type) => {
+    setFilterType(type);
+    setOffset(0);
+  };
+  const onChangeFilterName = (name) => {
+    setFilterName(name);
+    setOffset(0);
   };
   const renderContent = () => {
     if (loading && !pokemons.length) {
@@ -112,12 +124,13 @@ const Home = () => {
       </div>
     );
   };
+
   return (
     <div className="home-container">
       <Filters
-        onSearchChange={setFilterName}
+        onSearchChange={onChangeFilterName}
         searchValue={filterName}
-        onTypeChange={setFilterType}
+        onTypeChange={onChangeFilterType}
         types={types}
       />
       {renderContent()}
