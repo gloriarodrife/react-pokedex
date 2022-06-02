@@ -13,25 +13,45 @@ import {
 import './Detail.scss';
 import Loading from './Loading';
 import PokemonCard from './PokemonCard';
-
+const duplicates = (arr) => {
+  const pokemonsMap = arr.map((pokemon) => {
+    return [pokemon.id, pokemon];
+  });
+  return [...new Map(pokemonsMap).values()];
+};
 function Detail() {
   const { id } = useParams();
   const [pokemon, setPokemon] = useState();
 
-  const handleClick = (event) => {
-    event.preventDefault();
+  const addPokemonToFavorites = () => {
     postPokemonFavorite(pokemon.id).then((response) => {
       setPokemon(response);
     });
   };
 
-  const handleClickUnfavorite = (event) => {
-    event.preventDefault();
+  const removePokemonToFavorite = () => {
     postPokemonUnFavorite(pokemon.id).then((response) => {
       setPokemon(response);
     });
   };
 
+  const favorite = (id) => {
+    postPokemonFavorite(id).then((response) => {
+      setPokemon({
+        ...pokemon,
+        evolutions: duplicates([...pokemon.evolutions, response]),
+      });
+    });
+  };
+
+  const unFavorite = (id) => {
+    postPokemonUnFavorite(id).then((response) => {
+      setPokemon({
+        ...pokemon,
+        evolutions: duplicates([...pokemon.evolutions, response]),
+      });
+    });
+  };
   useEffect(() => {
     getPokemonById(id).then((response) => {
       setPokemon(response);
@@ -62,14 +82,15 @@ function Detail() {
               name: evolution.name,
               image: evolution.image,
               isFavorite: evolution.isFavorite,
+              id: evolution.id,
             };
 
             return (
               <Link to={`/pokemon/${evolution.id}`} key={evolution.id}>
                 <PokemonCard
                   pokemon={pokemon}
-                  onUnfavoriteClick={handleClickUnfavorite}
-                  onFavoriteClick={handleClick}
+                  onFavoriteClick={favorite}
+                  onUnfavoriteClick={unFavorite}
                 />
               </Link>
             );
@@ -104,10 +125,10 @@ function Detail() {
             {pokemon.isFavorite ? (
               <HeartFavorite
                 className="heart"
-                onClick={handleClickUnfavorite}
+                onClick={removePokemonToFavorite}
               />
             ) : (
-              <Heart className="heart" onClick={handleClick} />
+              <Heart className="heart" onClick={addPokemonToFavorites} />
             )}
           </section>
           <section className="pokemon__stats">
