@@ -115,9 +115,9 @@ const Home = () => {
   return (
     <div className="home-container">
       <Filters
-        setFilterName={setFilterName}
-        filterName={filterName}
-        setFilterType={setFilterType}
+        onSearchChange={setFilterName}
+        searchValue={filterName}
+        onTypeChange={setFilterType}
         types={types}
       />
       {renderContent()}
