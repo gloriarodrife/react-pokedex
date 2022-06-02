@@ -114,8 +114,8 @@ const Home = () => {
               <Link to={`/pokemon/${pokemon.id}`}>
                 <PokemonCard
                   pokemon={pokemon}
-                  postPokemonFavorite={favorite}
-                  postPokemonUnFavorite={unFavorite}
+                  onFavoriteClick={favorite}
+                  onUnfavoriteClick={unFavorite}
                 />
               </Link>
             </div>
