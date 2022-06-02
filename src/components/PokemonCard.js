@@ -4,16 +4,16 @@ import { ReactComponent as Heart } from '../images/heart.svg';
 import './PokemonCard.scss';
 function PokemonCard(props) {
   const { pokemon } = props;
-  const handleClick = (event) => {
+  const favoriteHasClicked = (event) => {
     event.preventDefault();
     const id = pokemon.id;
-    props.postPokemonFavorite(id);
+    props.onFavoriteClick(id);
   };
 
-  const handleClickUnfavorite = (event) => {
+  const unfavoriteHasClicked = (event) => {
     event.preventDefault();
     const id = pokemon.id;
-    props.postPokemonUnFavorite(id);
+    props.onUnfavoriteClick(id);
   };
 
   return (
@@ -29,9 +29,9 @@ function PokemonCard(props) {
           )}
         </div>
         {pokemon.isFavorite ? (
-          <HeartFavorite className="heart" onClick={handleClickUnfavorite} />
+          <HeartFavorite className="heart" onClick={unfavoriteHasClicked} />
         ) : (
-          <Heart className="heart" onClick={handleClick} />
+          <Heart className="heart" onClick={favoriteHasClicked} />
         )}
       </div>
     </div>

@@ -68,8 +68,8 @@ function Detail() {
               <Link to={`/pokemon/${evolution.id}`} key={evolution.id}>
                 <PokemonCard
                   pokemon={pokemon}
-                  handleClickUnfavorite={handleClickUnfavorite}
-                  handleClick={handleClick}
+                  onUnfavoriteClick={handleClickUnfavorite}
+                  onFavoriteClick={handleClick}
                 />
               </Link>
             );
