@@ -7,10 +7,33 @@ function Filters(props) {
   const typeHasChanged = (event) => {
     props.onTypeChange(event.currentTarget.value);
   };
-
+  const favoritesPokemons = () => {
+    props.favorites(true);
+  };
+  const AllPokemons = () => {
+    props.allPokemons();
+  };
   return (
     <>
-      <div>{/* Favorite  */}</div>
+      <div>
+        <div className="filters__favorites">
+          <button
+            onClick={AllPokemons}
+            className={`filter__all ${props.favoritesList ? '' : 'pokemons'}`}
+          >
+            All
+          </button>
+
+          <button
+            onClick={favoritesPokemons}
+            className={`filter__favorites ${
+              props.favoritesList ? 'pokemons' : ''
+            }`}
+          >
+            Favorites
+          </button>
+        </div>
+      </div>
       <div className="filters">
         <input
           className="filter__search"
