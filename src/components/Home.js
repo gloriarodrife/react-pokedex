@@ -25,6 +25,7 @@ const sort = (list, key) => {
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [types, setTypes] = useState([]);
+  const [favoritesList, setFavoritesList] = useState('');
   const [filterName, setFilterName] = useState('');
   const [filterType, setFilterType] = useState('');
   const [pokemonsCount, setPokemonsCount] = useState();
@@ -38,6 +39,7 @@ const Home = () => {
       limit: String(limit),
       offset: String(offset),
       search: filterName.toLowerCase(),
+      isFavorite: String(favoritesList),
       type: filterType,
     }).then((response) => {
       const newPokemons = offset
@@ -49,7 +51,7 @@ const Home = () => {
       setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, filterName, filterType]);
+  }, [offset, filterName, filterType, favoritesList]);
 
   useEffect(() => {
     getPokemonsTypes().then((response) => setTypes(response.sort()));
@@ -132,6 +134,8 @@ const Home = () => {
         searchValue={filterName}
         onTypeChange={onChangeFilterType}
         types={types}
+        favorites={setFavoritesList}
+        allPokemons={setFavoritesList}
       />
       {renderContent()}
     </div>
