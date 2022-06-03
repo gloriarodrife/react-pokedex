@@ -136,6 +136,7 @@ const Home = () => {
         types={types}
         favorites={setFavoritesList}
         allPokemons={setFavoritesList}
+        favoritesList={favoritesList}
       />
       {renderContent()}
     </div>

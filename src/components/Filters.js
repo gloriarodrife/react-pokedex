@@ -16,9 +16,23 @@ function Filters(props) {
   return (
     <>
       <div>
-        <button onClick={AllPokemons}>All</button>
+        <div className="filters__favorites">
+          <button
+            onClick={AllPokemons}
+            className={`filter__all ${props.favoritesList ? '' : 'pokemons'}`}
+          >
+            All
+          </button>
 
-        <button onClick={favoritesPokemons}>Favorites</button>
+          <button
+            onClick={favoritesPokemons}
+            className={`filter__favorites ${
+              props.favoritesList ? 'pokemons' : ''
+            }`}
+          >
+            Favorites
+          </button>
+        </div>
       </div>
       <div className="filters">
         <input

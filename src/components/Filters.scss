@@ -7,7 +7,9 @@
 }
 .filter {
   &__search,
-  &__select {
+  &__select,
+  &__all,
+  &__favorites {
     padding: 0 0.5rem;
     border: 1px solid rgba(31, 31, 31, 0.3);
     background-color: #f3f3f3;
@@ -18,4 +20,32 @@
     cursor: pointer;
     color: #757575;
   }
+  &__search {
+    width: 250px;
+  }
+  &__select {
+    width: 150px;
+  }
+
+  &__all,
+  &__favorites {
+    width: 208px;
+    border-color: #71c1a1;
+  }
+  &__all {
+    border-radius: 4px 0 0 4px;
+  }
+  &__favorites {
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.filters__favorites {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.pokemons {
+  background-color: #71c1a1;
+  color: white;
 }
