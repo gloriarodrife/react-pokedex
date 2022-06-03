@@ -11,7 +11,7 @@ function Filters(props) {
     props.favorites(true);
   };
   const AllPokemons = () => {
-    props.allPokemons('');
+    props.allPokemons();
   };
   return (
     <>

@@ -25,7 +25,7 @@ const sort = (list, key) => {
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [types, setTypes] = useState([]);
-  const [favoritesList, setFavoritesList] = useState('');
+  const [favoritesList, setFavoritesList] = useState();
   const [filterName, setFilterName] = useState('');
   const [filterType, setFilterType] = useState('');
   const [pokemonsCount, setPokemonsCount] = useState();
@@ -39,7 +39,7 @@ const Home = () => {
       limit: String(limit),
       offset: String(offset),
       search: filterName.toLowerCase(),
-      isFavorite: String(favoritesList),
+      isFavorite: favoritesList,
       type: filterType,
     }).then((response) => {
       const newPokemons = offset
@@ -84,6 +84,13 @@ const Home = () => {
   const onChangeFilterName = (name) => {
     setFilterName(name);
     setOffset(0);
+  };
+
+  const FavoritesList = (value) => {
+    setFavoritesList(value);
+  };
+  const allFavoritesList = (value) => {
+    setFavoritesList(value);
   };
   const renderContent = () => {
     if (loading && !pokemons.length) {
@@ -134,8 +141,8 @@ const Home = () => {
         searchValue={filterName}
         onTypeChange={onChangeFilterType}
         types={types}
-        favorites={setFavoritesList}
-        allPokemons={setFavoritesList}
+        favorites={FavoritesList}
+        allPokemons={allFavoritesList}
         favoritesList={favoritesList}
       />
       {renderContent()}
