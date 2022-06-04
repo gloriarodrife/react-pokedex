@@ -1,4 +1,4 @@
-.filters {
+.type-favorites {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -21,16 +21,28 @@
     color: #757575;
   }
   &__search {
-    width: 250px;
+    width: 175px;
+
+    @media all and (min-width: 680px) {
+      width: 250px;
+    }
   }
   &__select {
-    width: 150px;
+    width: 110px;
+
+    @media all and (min-width: 680px) {
+      width: 150px;
+    }
   }
 
   &__all,
   &__favorites {
-    width: 208px;
+    width: 150px;
     border-color: #71c1a1;
+
+    @media all and (min-width: 680px) {
+      width: 208px;
+    }
   }
   &__all {
     border-radius: 4px 0 0 4px;
