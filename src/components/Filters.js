@@ -34,7 +34,7 @@ function Filters(props) {
           </button>
         </div>
       </div>
-      <div className="filters">
+      <div className="type-favorites">
         <input
           className="filter__search"
           placeholder="Search"
