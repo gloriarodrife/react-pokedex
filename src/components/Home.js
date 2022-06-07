@@ -103,7 +103,7 @@ const Home = () => {
       );
     }
     if (!loading && !pokemons.length) {
-      return <h1>There are no pokemons!</h1>;
+      return <h1 className="notPokemons">There are no pokemons!</h1>;
     }
     return (
       <div role="list">
